@@ -3,14 +3,17 @@ const express = require("express");
 const cors = require("cors");
 
 const app = express();
+const routes = require('./routes');
 
 // Middleware
 app.use(cors());
 app.use(express.json()); // lets us read JSON bodies
 
-// Health check route
-app.get("/health", (req, res) => {
-  res.json({ status: "ok", message: "AI Job Tracker API is running" });
+app.use('/', routes);
+
+// 404 handler (if no route matched)
+app.use((req, res) => {
+  res.status(404).json({ error: 'Route not found' });
 });
 
 module.exports = app;
