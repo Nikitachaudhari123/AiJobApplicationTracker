@@ -51,9 +51,22 @@ async function deleteJobApplication(id, user_id) {
   return result.affectedRows;
 }
 
+// GET single job (ownership enforced)
+async function getJobApplicationById(id, user_id) {
+  const [rows] = await pool.query(
+    `SELECT id, job_title, company, status, job_description, created_at
+     FROM job_applications
+     WHERE id = ? AND user_id = ?`,
+    [id, user_id]
+  );
+
+  return rows[0] || null;
+}
+
 module.exports = {
   createJobApplication,
   getAllJobApplications,
+  getJobApplicationById,
   updateJobStatus,
   deleteJobApplication,
 };
