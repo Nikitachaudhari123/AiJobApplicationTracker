@@ -15,6 +15,8 @@ export default function JobForm({ onAdd }) {
 
   return (
     <div style={{ border: "1px solid #ddd", padding: 12, borderRadius: 8 }}>
+      
+
       <h3>Add Job</h3>
       <form onSubmit={handleSubmit}>
         <input
@@ -35,7 +37,7 @@ export default function JobForm({ onAdd }) {
           onChange={(e) => setJobDescription(e.target.value)}
           style={{ width: "100%", padding: 10, marginBottom: 10, height: 80 }}
         />
-        <button style={{ padding: 10 }}>Add</button>
+        <button className="primary-btn">Add Job</button>
       </form>
     </div>
   );

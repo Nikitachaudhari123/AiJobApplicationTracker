@@ -1,0 +1,123 @@
+/* Global */
+body {
+  margin: 0;
+  font-family: Inter, Arial, sans-serif;
+  background-color: #f8fafc;
+  color: #0f172a;
+}
+
+button {
+  cursor: pointer;
+  border-radius: 6px;
+  border: none;
+  font-weight: 500;
+}
+
+/* Layout */
+.container {
+  max-width: 900px;
+  margin: 30px auto;
+  padding: 20px;
+}
+
+/* Header */
+.header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.header h2 {
+  color: #4f46e5;
+}
+
+.logout-btn {
+  background: #ef4444;
+  color: white;
+  padding: 8px 14px;
+}
+
+.logout-btn:hover {
+  background: #dc2626;
+}
+
+/* Cards */
+.card {
+  background: white;
+  border-radius: 10px;
+  padding: 16px;
+  box-shadow: 0 10px 20px rgba(0,0,0,0.05);
+  margin-bottom: 20px;
+}
+
+/* Inputs */
+input, textarea, select {
+  width: 100%;
+  padding: 10px;
+  margin-bottom: 12px;
+  border-radius: 6px;
+  border: 1px solid #cbd5f5;
+  font-size: 14px;
+}
+
+input:focus,
+textarea:focus,
+select:focus {
+  outline: none;
+  border-color: #4f46e5;
+}
+
+/* Buttons */
+.primary-btn {
+  background: #4f46e5;
+  color: white;
+  padding: 10px 16px;
+}
+
+.primary-btn:hover {
+  background: #4338ca;
+}
+
+.secondary-btn {
+  background: #e5e7eb;
+  padding: 6px 12px;
+}
+
+.danger-btn {
+  background: #ef4444;
+  color: white;
+  padding: 6px 12px;
+}
+
+.danger-btn:hover {
+  background: #dc2626;
+}
+
+/* Job item */
+.job-card {
+  display: flex;
+  justify-content: space-between;
+  gap: 16px;
+}
+
+.job-title {
+  font-weight: 600;
+  font-size: 16px;
+}
+
+.job-company {
+  color: #475569;
+}
+
+.status {
+  font-size: 13px;
+  margin-top: 4px;
+}
+
+/* Pagination */
+.pagination {
+  display: flex;
+  gap: 10px;
+  align-items: center;
+  justify-content: center;
+}
