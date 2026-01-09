@@ -7,6 +7,7 @@ export default function JobForm({ onAdd }) {
 
   async function handleSubmit(e) {
     e.preventDefault();
+    if (!job_title || !company) return;
     await onAdd({ job_title, company, job_description });
     setJobTitle("");
     setCompany("");
@@ -14,31 +15,16 @@ export default function JobForm({ onAdd }) {
   }
 
   return (
-    <div style={{ border: "1px solid #ddd", padding: 12, borderRadius: 8 }}>
-      
-
-      <h3>Add Job</h3>
-      <form onSubmit={handleSubmit}>
-        <input
-          placeholder="Job title"
-          value={job_title}
-          onChange={(e) => setJobTitle(e.target.value)}
-          style={{ width: "100%", padding: 10, marginBottom: 10 }}
-        />
-        <input
-          placeholder="Company"
-          value={company}
-          onChange={(e) => setCompany(e.target.value)}
-          style={{ width: "100%", padding: 10, marginBottom: 10 }}
-        />
-        <textarea
-          placeholder="Job description (optional)"
-          value={job_description}
-          onChange={(e) => setJobDescription(e.target.value)}
-          style={{ width: "100%", padding: 10, marginBottom: 10, height: 80 }}
-        />
-        <button className="primary-btn">Add Job</button>
-      </form>
-    </div>
+    <form onSubmit={handleSubmit}>
+      <h3>Add New Job</h3>
+      <input placeholder="Job title" value={job_title}
+        onChange={(e) => setJobTitle(e.target.value)} />
+      <input placeholder="Company" value={company}
+        onChange={(e) => setCompany(e.target.value)} />
+      <textarea placeholder="Job description"
+        value={job_description}
+        onChange={(e) => setJobDescription(e.target.value)} />
+      <button className="primary-btn">Add Job</button>
+    </form>
   );
 }

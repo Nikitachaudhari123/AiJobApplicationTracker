@@ -1,123 +1,87 @@
-/* Global */
+:root {
+  --bg: #f8fafc;
+  --card: #ffffff;
+  --text: #0f172a;
+  --primary: #4f46e5;
+  --danger: #ef4444;
+}
+
+[data-theme="dark"] {
+  --bg: #0f172a;
+  --card: #020617;
+  --text: #e5e7eb;
+  --primary: #818cf8;
+}
+
 body {
   margin: 0;
   font-family: Inter, Arial, sans-serif;
-  background-color: #f8fafc;
-  color: #0f172a;
+  background: var(--bg);
+  color: var(--text);
 }
 
-button {
-  cursor: pointer;
-  border-radius: 6px;
-  border: none;
-  font-weight: 500;
-}
-
-/* Layout */
 .container {
   max-width: 900px;
   margin: 30px auto;
   padding: 20px;
 }
 
-/* Header */
 .header {
   display: flex;
   justify-content: space-between;
   align-items: center;
 }
 
-.header h2 {
-  color: #4f46e5;
-}
-
-.logout-btn {
-  background: #ef4444;
-  color: white;
-  padding: 8px 14px;
-}
-
-.logout-btn:hover {
-  background: #dc2626;
-}
-
-/* Cards */
 .card {
-  background: white;
-  border-radius: 10px;
+  background: var(--card);
+  border-radius: 12px;
   padding: 16px;
-  box-shadow: 0 10px 20px rgba(0,0,0,0.05);
   margin-bottom: 20px;
+  box-shadow: 0 10px 20px rgba(0,0,0,0.06);
 }
 
-/* Inputs */
 input, textarea, select {
   width: 100%;
   padding: 10px;
   margin-bottom: 12px;
-  border-radius: 6px;
+  border-radius: 8px;
   border: 1px solid #cbd5f5;
-  font-size: 14px;
 }
 
-input:focus,
-textarea:focus,
-select:focus {
-  outline: none;
-  border-color: #4f46e5;
-}
-
-/* Buttons */
 .primary-btn {
-  background: #4f46e5;
+  background: var(--primary);
   color: white;
   padding: 10px 16px;
 }
 
-.primary-btn:hover {
-  background: #4338ca;
-}
-
 .secondary-btn {
   background: #e5e7eb;
-  padding: 6px 12px;
+  padding: 8px 12px;
 }
 
-.danger-btn {
-  background: #ef4444;
+.logout-btn {
+  background: var(--danger);
   color: white;
-  padding: 6px 12px;
+  padding: 8px 14px;
 }
 
-.danger-btn:hover {
-  background: #dc2626;
-}
-
-/* Job item */
 .job-card {
-  display: flex;
-  justify-content: space-between;
-  gap: 16px;
+  animation: fadeIn 0.3s ease;
 }
 
-.job-title {
-  font-weight: 600;
-  font-size: 16px;
-}
-
-.job-company {
-  color: #475569;
-}
-
-.status {
-  font-size: 13px;
-  margin-top: 4px;
-}
-
-/* Pagination */
 .pagination {
   display: flex;
   gap: 10px;
-  align-items: center;
   justify-content: center;
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(8px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
 }
