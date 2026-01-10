@@ -72,3 +72,6 @@ npm run dev
 cd frontend
 npm install
 npm run dev
+
+#Simple Start
+npm start 
