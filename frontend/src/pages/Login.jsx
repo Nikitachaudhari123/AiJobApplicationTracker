@@ -13,8 +13,9 @@ export default function Login() {
   async function handleSubmit(e) {
     e.preventDefault();
     setMsg("");
+
     try {
-      await login(email, password);
+      await login(email, password); // ✅ only this
       navigate("/dashboard");
     } catch (err) {
       setMsg(err.response?.data?.message || "Login failed");

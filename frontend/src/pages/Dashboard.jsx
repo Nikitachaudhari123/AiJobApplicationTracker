@@ -1,44 +1,80 @@
-<div className="container">
-  <div className="header">
-    <div>
-      <h2>AI Job Tracker</h2>
-      <div style={{ fontSize: 14 }}>
-        Logged in as <b>{user?.name}</b> ({user?.email})
+import { useState } from "react";
+import { useAuth } from "../auth/AuthContext";
+import JobForm from "../components/JobForm";
+import JobList from "../components/JobList";
+import AiAnalyzerWidget from "../components/AiAnalyzerWidget"; // make sure path correct
+
+export default function Dashboard() {
+  const {
+    user,
+    logout,
+    jobs,
+    addJob,
+    updateStatus,
+    deleteJob,
+    page,
+    setPage,
+    hasNext,
+    msg,
+    dark,
+    setDark,
+  } = useAuth();
+
+  const [prefill, setPrefill] = useState(null);
+
+  return (
+    <div className="container">
+      <div className="header">
+        <button className="secondary-btn" onClick={() => setDark((d) => !d)}>
+          {dark ? "☀ Light" : "🌙 Dark"}
+        </button>
+
+        <div>
+          <h2>AI Job Tracker</h2>
+          <div style={{ fontSize: 14 }}>
+            Logged in as <b>{user?.name}</b> ({user?.email})
+          </div>
+        </div>
+
+        <button onClick={logout} className="logout-btn">
+          Logout
+        </button>
+      </div>
+
+      {msg && <p style={{ color: "#ef4444" }}>{msg}</p>}
+
+      {/* ✅ AI widget bottom-right */}
+      <AiAnalyzerWidget onApplyToForm={(ai) => setPrefill(ai)} />
+
+      <div className="card">
+        <JobForm onAdd={addJob} prefill={prefill} />
+      </div>
+
+      <div className="card">
+        <h3>Your Jobs</h3>
+
+        <JobList jobs={jobs} onStatus={updateStatus} onDelete={deleteJob} />
+
+        <div className="pagination">
+          <button
+            className="secondary-btn"
+            disabled={page === 1}
+            onClick={() => setPage((p) => Math.max(1, p - 1))}
+          >
+            Prev
+          </button>
+
+          <span>Page {page}</span>
+
+          <button
+            className="secondary-btn"
+            disabled={!hasNext}
+            onClick={() => setPage((p) => p + 1)}
+          >
+            Next
+          </button>
+        </div>
       </div>
     </div>
-    <button onClick={logout} className="logout-btn">
-      Logout
-    </button>
-  </div>
-
-  {msg && <p style={{ color: "#dc2626" }}>{msg}</p>}
-
-  <div className="card">
-    <JobForm onAdd={addJob} />
-  </div>
-
-  <div className="card">
-    <h3>Your Jobs</h3>
-    <JobList jobs={jobs} onStatus={updateStatus} onDelete={deleteJob} />
-
-    <div className="pagination">
-      <button
-        className="secondary-btn"
-        disabled={page === 1}
-        onClick={() => setPage(p => Math.max(1, p - 1))}
-      >
-        Prev
-      </button>
-
-      <span>Page {page}</span>
-
-      <button
-        className="secondary-btn"
-        disabled={!hasNext}
-        onClick={() => setPage(p => p + 1)}
-      >
-        Next
-      </button>
-    </div>
-  </div>
-</div>
+  );
+}
