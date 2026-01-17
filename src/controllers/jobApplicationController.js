@@ -6,24 +6,32 @@ const AppError = require("../utils/AppError");
 // CREATE job
 async function createJob(req, res, next) {
   try {
-    const { job_title, company, job_description } = req.body;
+    const { job_title, company, job_description, skills = [], keywords = [], ai_analysis = null } = req.body;
     const userId = req.user.id;
 
     if (!job_title?.trim() || !company?.trim()) {
       throw new AppError("Job title and company are required", 400);
     }
 
+    const keywords_json = keywords?.length ? JSON.stringify(keywords) : null;
+    const ai_analysis_json = ai_analysis ? JSON.stringify(ai_analysis) : null;
+
     const jobId = await jobModel.createJobApplication({
       user_id: userId,
       job_title,
       company,
       job_description,
+      keywords_json,
+      ai_analysis_json,
     });
 
-    res.status(201).json({
-      success: true,
-      data: { jobId },
-    });
+    // attach skills (optional) – only if you want
+    for (const skill of skills) {
+      const skillId = await skillModel.getOrCreateSkill(skill);
+      await skillModel.linkSkillToJob(jobId, skillId);
+    }
+
+    res.status(201).json({ success: true, data: { id: jobId } });
   } catch (error) {
     next(error);
   }
@@ -46,10 +54,7 @@ async function getJobs(req, res, next) {
     res.json({
       success: true,
       data: jobs,
-      pagination: {
-        page: Number(page),
-        limit: Number(limit),
-      },
+      pagination: { page: Number(page), limit: Number(limit) },
     });
   } catch (error) {
     next(error);
@@ -63,9 +68,7 @@ async function updateJob(req, res, next) {
     const { status } = req.body;
     const userId = req.user.id;
 
-    if (!status) {
-      throw new AppError("Status is required", 400);
-    }
+    if (!status) throw new AppError("Status is required", 400);
 
     const allowedStatuses = ["applied", "interview", "offer", "rejected"];
     if (!allowedStatuses.includes(status)) {
@@ -73,9 +76,7 @@ async function updateJob(req, res, next) {
     }
 
     const job = await jobModel.getJobApplicationById(jobId, userId);
-    if (!job) {
-      throw new AppError("Job not found", 404);
-    }
+    if (!job) throw new AppError("Job not found", 404);
 
     await statusHistoryModel.addStatusHistory({
       job_application_id: jobId,
@@ -85,10 +86,7 @@ async function updateJob(req, res, next) {
 
     await jobModel.updateJobStatus(jobId, userId, status);
 
-    res.json({
-      success: true,
-      message: "Job status updated",
-    });
+    res.json({ success: true, message: "Job status updated" });
   } catch (error) {
     next(error);
   }
@@ -101,14 +99,9 @@ async function deleteJob(req, res, next) {
     const userId = req.user.id;
 
     const deleted = await jobModel.deleteJobApplication(jobId, userId);
-    if (deleted === 0) {
-      throw new AppError("Job not found", 404);
-    }
+    if (deleted === 0) throw new AppError("Job not found", 404);
 
-    res.json({
-      success: true,
-      message: "Job deleted successfully",
-    });
+    res.json({ success: true, message: "Job deleted successfully" });
   } catch (error) {
     next(error);
   }
@@ -121,24 +114,19 @@ async function addSkillsToJob(req, res, next) {
     const { skills } = req.body;
     const userId = req.user.id;
 
-    if (!Array.isArray(skills)) {
-      throw new AppError("Skills must be an array", 400);
-    }
+    if (!Array.isArray(skills)) throw new AppError("Skills must be an array", 400);
 
     const job = await jobModel.getJobApplicationById(jobId, userId);
-    if (!job) {
-      throw new AppError("Job not found", 404);
-    }
+    if (!job) throw new AppError("Job not found", 404);
 
-    for (const skill of skills) {
+    for (const s of skills) {
+      const skill = String(s || "").trim();
+      if (!skill) continue;
       const skillId = await skillModel.getOrCreateSkill(skill);
       await skillModel.linkSkillToJob(jobId, skillId);
     }
 
-    res.json({
-      success: true,
-      message: "Skills added successfully",
-    });
+    res.json({ success: true, message: "Skills added successfully" });
   } catch (error) {
     next(error);
   }
@@ -151,16 +139,11 @@ async function getJobHistory(req, res, next) {
     const userId = req.user.id;
 
     const job = await jobModel.getJobApplicationById(jobId, userId);
-    if (!job) {
-      throw new AppError("Job not found", 404);
-    }
+    if (!job) throw new AppError("Job not found", 404);
 
     const history = await statusHistoryModel.getStatusHistory(jobId);
 
-    res.json({
-      success: true,
-      data: history,
-    });
+    res.json({ success: true, data: history });
   } catch (error) {
     next(error);
   }
