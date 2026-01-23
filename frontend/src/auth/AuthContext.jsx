@@ -22,7 +22,7 @@ export function AuthProvider({ children }) {
 
   useEffect(() => {
     localStorage.setItem("darkMode", String(dark));
-    document.body.classList.toggle("dark", dark);
+    document.documentElement.classList.toggle("dark", dark);
   }, [dark]);
 
   useEffect(() => {

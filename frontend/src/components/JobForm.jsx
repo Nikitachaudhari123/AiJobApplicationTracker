@@ -54,7 +54,7 @@ export default function JobForm({ onAdd, prefill }) {
   }
 
   return (
-    <form onSubmit={handleSubmit}>
+    <form onSubmit={handleSubmit} className="card">
       <h3>Add Job</h3>
 
       <input
@@ -87,7 +87,7 @@ export default function JobForm({ onAdd, prefill }) {
         </div>
       )}
 
-      <button type="submit"> Add Job  </button>
+      <button type="submit" className="primary-btn"> Add Job  </button>
     </form>
   );
 }

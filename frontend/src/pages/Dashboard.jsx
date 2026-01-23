@@ -44,7 +44,9 @@ export default function Dashboard() {
       {msg && <p style={{ color: "#ef4444" }}>{msg}</p>}
 
       {/* ✅ AI widget bottom-right */}
-      <AiAnalyzerWidget onApplyToForm={(ai) => setPrefill(ai)} />
+      <div className="ai-widget-wrapper">
+        <AiAnalyzerWidget onApplyToForm={(ai) => setPrefill(ai)} />
+      </div>
 
       <div className="card">
         <JobForm onAdd={addJob} prefill={prefill} />

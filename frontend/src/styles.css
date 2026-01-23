@@ -2,8 +2,8 @@
 body {
   margin: 0;
   font-family: Inter, Arial, sans-serif;
-  background-color: #f8fafc;
-  color: #0f172a;
+  background-color: transparent;
+  color: inherit;
 }
 
 button {
@@ -12,7 +12,15 @@ button {
   border: none;
   font-weight: 500;
 }
-
+/* AI Widget positioning */
+.ai-widget-wrapper {
+  position: centred;
+  padding: 12px;
+  margin: 12px;
+  right: 24px;
+  bottom: 24px;
+  z-index: 50;
+}
 /* Layout */
 .container {
   max-width: 900px;
@@ -255,4 +263,35 @@ html.dark .job-item {
   border-radius: 6px;
   margin: 4px;
   font-size: 12px;
+}
+
+@keyframes fadeUp {
+  from {
+    opacity: 0;
+    transform: translateY(6px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.job-item {
+  animation: fadeUp 0.25s ease;
+}
+
+
+@keyframes floatIn {
+  from {
+    opacity: 0;
+    transform: translateY(12px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.ai-widget-wrapper {
+  animation: floatIn 0.25s ease;
 }

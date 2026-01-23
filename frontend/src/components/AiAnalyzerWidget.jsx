@@ -36,7 +36,7 @@ export default function AiAnalyzerWidget({ onApplyToForm }) {
       <div className="ai-head">
         <div>
           <b>AI Job Analyzer</b>
-          <div style={{ fontSize: 12, opacity: 0.75 }}>
+          <div style={{margin: 12, fontSize: 12, opacity: 0.75 }}>
             Paste job description → extract role, skills, keywords.
           </div>
         </div>
