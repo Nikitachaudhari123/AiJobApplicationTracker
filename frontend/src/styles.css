@@ -295,3 +295,9 @@ html.dark .job-item {
 .ai-widget-wrapper {
   animation: floatIn 0.25s ease;
 }
+@media (max-width: 640px) {
+  .ai-widget-wrapper {
+    right: 12px;
+    bottom: 12px;
+  }
+}

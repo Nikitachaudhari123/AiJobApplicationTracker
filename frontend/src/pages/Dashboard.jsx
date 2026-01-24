@@ -28,6 +28,13 @@ export default function Dashboard() {
         <button className="secondary-btn" onClick={() => setDark((d) => !d)}>
           {dark ? "☀ Light" : "🌙 Dark"}
         </button>
+        <button
+  className="secondary-btn"
+  onClick={() => window.location.assign("/resume-score")}
+>
+  Resume Score
+</button>
+
 
         <div>
           <h2>AI Job Tracker</h2>
