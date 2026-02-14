@@ -1,45 +1,62 @@
-# AI Job Application Tracker (Backend)
+# AI Job Application Tracker (Full Stack)
 
-A production-ready backend API to track job applications with authentication,
-status history, skills mapping, and secure user-based access.
+A production-ready job application tracker with authentication, job CRUD, status history, skills mapping, and user-based access.
 
-# 🚀 Features
+---
+
+## 🚀 Features
 - JWT Authentication (Register / Login)
-- Secure CRUD for job applications
+- Secure CRUD for job applications (per-user)
 - Status history tracking (audit trail)
 - Skills normalization (many-to-many)
 - Pagination & filtering
 - Centralized error handling
+- Basic React frontend (Login/Register/Dashboard)
 
-# 🛠 Tech Stack
+---
+
+## 🛠 Tech Stack
+
+### Backend
 - Node.js
 - Express.js
-- MySQL
+- MySQL (Railway / Local)
 - JWT
 - bcrypt
 
-# 🔐 Authentication Flow
+### Frontend
+- React (Vite)
+- React Router
+- Axios
+
+---
+
+## 🔐 Authentication Flow
 1. User registers
 2. User logs in → receives JWT
-3. JWT required for all protected routes
+3. JWT required for all protected routes (`Authorization: Bearer <token>`)
 
-# 📌 API Endpoints
+---
 
-# Auth
-- POST /auth/register
-- POST /auth/login
+## 📌 API Endpoints
 
-# Jobs
-- POST /jobs
-- GET /jobs?page=&limit=&status=&company=
-- PUT /jobs/:id
-- DELETE /jobs/:id
+### Auth
+- `POST /auth/register`
+- `POST /auth/login`
 
-# Job Extras
-- GET /jobs/:id/history
-- POST /jobs/:id/skills
+### Jobs
+- `POST /jobs`
+- `GET /jobs?page=&limit=&status=&company=`
+- `PUT /jobs/:id`
+- `DELETE /jobs/:id`
 
-# 🧪 Error Handling
+### Job Extras
+- `GET /jobs/:id/history`
+- `POST /jobs/:id/skills`
+
+---
+
+## 🧪 Error Handling
 All errors follow:
 ```json
 {
@@ -47,7 +64,11 @@ All errors follow:
   "message": "Error message"
 }
 
-# Run Locally 
-- npm install
-- node src/server.js
+#backend run 
+npm install
+npm run dev
 
+#frontend run 
+cd frontend
+npm install
+npm run dev

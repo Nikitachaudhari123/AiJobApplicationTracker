@@ -1,0 +1,303 @@
+/* Global */
+body {
+  margin: 0;
+  font-family: Inter, Arial, sans-serif;
+  background-color: transparent;
+  color: inherit;
+}
+
+button {
+  cursor: pointer;
+  border-radius: 6px;
+  border: none;
+  font-weight: 500;
+}
+/* AI Widget positioning */
+.ai-widget-wrapper {
+  position: centred;
+  padding: 12px;
+  margin: 12px;
+  right: 24px;
+  bottom: 24px;
+  z-index: 50;
+}
+/* Layout */
+.container {
+  max-width: 900px;
+  margin: 30px auto;
+  padding: 20px;
+}
+
+/* Header */
+.header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.header h2 {
+  color: #4f46e5;
+}
+
+.logout-btn {
+  background: #ef4444;
+  color: white;
+  padding: 8px 14px;
+}
+
+.logout-btn:hover {
+  background: #dc2626;
+}
+
+/* Cards */
+.card {
+  background: white;
+  border-radius: 10px;
+  padding: 16px;
+  box-shadow: 0 10px 20px rgba(0,0,0,0.05);
+  margin-bottom: 20px;
+}
+
+/* Inputs */
+input, textarea, select {
+  width: 100%;
+  padding: 10px;
+  margin-bottom: 12px;
+  border-radius: 6px;
+  border: 1px solid #cbd5f5;
+  font-size: 14px;
+}
+
+input:focus,
+textarea:focus,
+select:focus {
+  outline: none;
+  border-color: #4f46e5;
+}
+
+/* Buttons */
+.primary-btn {
+  background: #4f46e5;
+  color: white;
+  padding: 10px 16px;
+}
+
+.primary-btn:hover {
+  background: #4338ca;
+}
+
+.secondary-btn {
+  background: #e5e7eb;
+  padding: 6px 12px;
+}
+
+.danger-btn {
+  background: #ef4444;
+  color: white;
+  padding: 6px 12px;
+}
+
+.danger-btn:hover {
+  background: #dc2626;
+}
+
+.job-list {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  margin-top: 12px;
+}
+
+.job-item {
+  display: flex;
+  justify-content: space-between;
+  gap: 16px;
+  padding: 14px;
+  border-radius: 14px;
+  border: 1px solid rgba(148, 163, 184, 0.2);
+  background: rgba(255, 255, 255, 0.04);
+}
+
+html.dark .job-item {
+  background: rgba(255, 255, 255, 0.03);
+  border: 1px solid rgba(148, 163, 184, 0.18);
+}
+
+.job-left {
+  flex: 1;
+  min-width: 0; /* prevents overflow */
+}
+
+.job-title {
+  font-size: 16px;
+  font-weight: 700;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 4px;
+}
+
+.job-role {
+  color: inherit;
+}
+
+.job-company {
+  opacity: 0.9;
+}
+
+.job-meta {
+  margin-top: 6px;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.status-pill {
+  padding: 3px 10px;
+  border-radius: 999px;
+  font-size: 12px;
+  font-weight: 700;
+  border: 1px solid rgba(148, 163, 184, 0.25);
+  background: rgba(99, 102, 241, 0.15);
+}
+
+.job-desc {
+  margin-top: 10px;
+  opacity: 0.9;
+  line-height: 1.4;
+  white-space: pre-wrap;
+  word-break: break-word;
+}
+
+.job-right {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  gap: 10px;
+  min-width: 140px;
+}
+
+.job-select {
+  width: 140px;
+  padding: 10px;
+  border-radius: 10px;
+}
+
+/* Mobile friendly */
+@media (max-width: 700px) {
+  .job-item {
+    flex-direction: column;
+  }
+  .job-right {
+    align-items: stretch;
+    min-width: 0;
+  }
+  .job-select {
+    width: 100%;
+  }
+}
+
+/* Job item */
+.job-card {
+  display: flex;
+  justify-content: space-between;
+  gap: 16px;
+}
+
+.job-title {
+  font-weight: 600;
+  font-size: 16px;
+}
+
+.job-company {
+  color: #475569;
+}
+
+.status {
+  font-size: 13px;
+  margin-top: 4px;
+}
+
+/* Pagination */
+.pagination {
+  display: flex;
+  gap: 10px;
+  align-items: center;
+  justify-content: center;
+}
+
+.ai-panel {
+  position: fixed;
+  bottom: 20px;
+  right: 20px;
+  width: 360px;
+  background: #0b1220;
+  color: #fff;
+  padding: 16px;
+  border-radius: 12px;
+  box-shadow: 0 20px 40px rgba(0,0,0,.4);
+  z-index: 999;
+}
+
+.ai-panel textarea {
+  width: 100%;
+  background: #111827;
+  color: white;
+  border: 1px solid #374151;
+  border-radius: 8px;
+  padding: 8px;
+}
+
+.ai-panel button {
+  width: 100%;
+  margin-top: 10px;
+}
+
+.ai-result {
+  margin-top: 12px;
+}
+
+.tag {
+  display: inline-block;
+  background: #6366f1;
+  padding: 4px 8px;
+  border-radius: 6px;
+  margin: 4px;
+  font-size: 12px;
+}
+
+@keyframes fadeUp {
+  from {
+    opacity: 0;
+    transform: translateY(6px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.job-item {
+  animation: fadeUp 0.25s ease;
+}
+
+
+@keyframes floatIn {
+  from {
+    opacity: 0;
+    transform: translateY(12px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.ai-widget-wrapper {
+  animation: floatIn 0.25s ease;
+}
+@media (max-width: 640px) {
+  .ai-widget-wrapper {
+    right: 12px;
+    bottom: 12px;
+  }
+}

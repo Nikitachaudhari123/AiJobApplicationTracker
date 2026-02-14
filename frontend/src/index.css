@@ -1,0 +1,25 @@
+/* light defaults */
+body {
+  background: #f6f7fb;
+  color: #111827;
+}
+
+/* dark mode */
+html.dark body {
+  background: #0b1220;
+  color: #e5e7eb;
+}
+
+html.dark .card,
+html.dark .job-card {
+  background: #111827;
+  border-color: #1f2937;
+}
+
+html.dark input,
+html.dark textarea,
+html.dark select {
+  background: #0f172a;
+  color: #e5e7eb;
+  border: 1px solid #334155;
+}

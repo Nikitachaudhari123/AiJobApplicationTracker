@@ -7,16 +7,19 @@ async function createJobApplication({
   company,
   status = "applied",
   job_description,
+  keywords_json = null,
+  ai_analysis_json = null,
 }) {
   const [result] = await pool.query(
-    `INSERT INTO job_applications 
-     (user_id, job_title, company, status, job_description)
-     VALUES (?, ?, ?, ?, ?)`,
-    [user_id, job_title, company, status, job_description || null]
+    `INSERT INTO job_applications
+     (user_id, job_title, company, status, job_description, keywords_json, ai_analysis_json)
+     VALUES (?, ?, ?, ?, ?, ?, ?)`,
+    [user_id, job_title, company, status, job_description || null, keywords_json, ai_analysis_json]
   );
 
   return result.insertId;
 }
+
 
 // GET all jobs for a user
 async function getAllJobApplications({
